@@ -9,7 +9,7 @@ class DriverLicense {
   expirationDate: string;
   lastUpdate: Date;
   authority: string;
-  categoryIssuingDate: string;
+  categoryIssuingDate?: string; // опціональне поле " -?- "
   photo: string | Buffer;
 
   // явний та не явний, дефолтний
