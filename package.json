@@ -1,0 +1,21 @@
+{
+  "name": "classes",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LisovaOl/Classes.git"
+  },
+  "author": "Olena Lisova",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LisovaOl/Classes/issues"
+  },
+  "homepage": "https://github.com/LisovaOl/Classes#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.57.0",
+    "@types/node": "^24.10.1"
+  }
+}
