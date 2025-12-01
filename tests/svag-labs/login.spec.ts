@@ -113,22 +113,36 @@ test("Product List", async ({ page }) => {
   // }
   // //console.log(titlesList);
 
-  const items = page.locator(".inventory_item");
-  const count = await items.count();
+  // const items = page.locator(".inventory_item");
+  // const count = await items.count();
 
-  const products = [];
+  // const products = [];
 
-  for (let i = 0; i < count; i++) {
-    const item = items.nth(i);
+  // for (let i = 0; i < count; i++) {
+  //   const item = items.nth(i);
 
-    const title = await item.locator(".inventory_item_name").innerText();
-    const price = await item.locator(".inventory_item_price").innerText();
+  //   const title = await item.locator(".inventory_item_name").innerText();
+  //   const price = await item.locator(".inventory_item_price").innerText();
+  //   const description = await item.locator(".inventory_item_desc").innerText();
 
-    products.push({
-      title: title,
-      price: price,
-    });
-  }
+  //   products.push({
+  //     title: title,
+  //     description: description,
+  //     price: price,
+  //   });
+  // }
+  const inventory = new Inventory(page);
+  //const allProducts = await inventory.getAllProducts();
+  //console.log(allProducts);
 
-  console.log(products);
+  await inventory.addToCartByTitle("Sauce Labs Backpack");
+  await inventory.addToCartByTitle("Sauce Labs Fleece Jacket");
+
+  await inventory.removeFromCartByTitle("Sauce Labs Backpack");
+
+  await inventory.getPriceByTitle("Sauce Labs Backpack");
+  await inventory.getPriceByTitle("Sauce Labs Fleece Jacket");
+  // console.log(allProducts[0].title);
+  // console.log(allProducts[0].description);
+  // console.log(allProducts[0].price);
 });
