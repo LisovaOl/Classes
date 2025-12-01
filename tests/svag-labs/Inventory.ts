@@ -68,13 +68,19 @@ export class Inventory {
   };
 
   getPriceByTitle = async (title: string): Promise<string> => {
-    const products = await this.getAllProducts();
-    const product = products.find((p) => p.title.trim() === title.trim());
+    const items = this.page.locator(".inventory_item");
+    const count = await items.count();
 
-    if (!product) {
-      throw new Error(`Product "${title}" not found`);
+    for (let i = 0; i < count; i++) {
+      const item = items.nth(i);
+      const itemTitle = await item.locator(".inventory_item_name").innerText();
+
+      if (itemTitle.trim() === title.trim()) {
+        const price = await item.locator(".inventory_item_price").innerText();
+        return price;
+      }
     }
-    console.log(product.price);
-    return product.price;
+
+    throw new Error(`Price for product "${title}" not found`);
   };
 }

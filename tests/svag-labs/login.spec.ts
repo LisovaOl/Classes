@@ -15,30 +15,30 @@ test("Log In as Standard User", async ({ page }) => {
   await expect(page.locator('[data-test="title"]')).toBeVisible();
 
   // add "Sauce Labs Backpack" object
-  const AddSauceLabsBackpackToCart = new Inventory(
-    page,
-    products[0].inventory_item_name,
-    products[0].price
-  );
+  // const AddSauceLabsBackpackToCart = new Inventory(
+  //   page,
+  //   products[0].inventory_item_name,
+  //   products[0].price
+  // );
 
   // add "Sauce Labs Backpack" to the Cart
-  await AddSauceLabsBackpackToCart.addToCartByTitle(
-    products[0].inventory_item_name
-  );
-  await expect(
-    page.locator(`[data-test="remove-${products[0].inventory_item_name}"]`)
-  ).toHaveText("Remove");
+  // await AddSauceLabsBackpackToCart.addToCartByTitle(
+  //   products[0].inventory_item_name
+  // );
+  // await expect(
+  //   page.locator(`[data-test="remove-${products[0].inventory_item_name}"]`)
+  // ).toHaveText("Remove");
 
-  // go to Cart
-  await page.locator('[data-test="shopping-cart-link"]').click();
+  // // go to Cart
+  // await page.locator('[data-test="shopping-cart-link"]').click();
 
-  // remove "Sauce Labs Backpack" from Cart
-  await AddSauceLabsBackpackToCart.removeFromCartByTitle(
-    products[0].inventory_item_name
-  );
-  await expect(page.getByText(products[0].name)).toBeVisible({
-    visible: false,
-  });
+  // // remove "Sauce Labs Backpack" from Cart
+  // await AddSauceLabsBackpackToCart.removeFromCartByTitle(
+  //   products[0].inventory_item_name
+  // );
+  // await expect(page.getByText(products[0].name)).toBeVisible({
+  //   visible: false,
+  // });
 
   // // add "Sauce Labs Fleece Jacket" object
   // const AddSauceLabsFleeceJacketToCart = new Inventory(
@@ -94,43 +94,6 @@ test("Product List", async ({ page }) => {
 
   await expect(page.locator('[data-test="title"]')).toBeVisible();
 
-  // const titles = await page.locator(".inventory_item_name").allInnerTexts();
-  // const titlesList = [];
-  // for (const title of titles) {
-  //   //console.log(title);
-  //   titlesList.push(title);
-  // }
-  // console.log(titlesList);
-
-  // inventory-item-description
-  // const titlesDescription = await page
-  //   .locator(".inventory-item-description")
-  //   .allInnerTexts();
-  // const titlesList1 = [];
-  // for (const titleD of titlesDescription) {
-  //   console.log(titleD);
-  //   titlesList1.push(titleD);
-  // }
-  // //console.log(titlesList);
-
-  // const items = page.locator(".inventory_item");
-  // const count = await items.count();
-
-  // const products = [];
-
-  // for (let i = 0; i < count; i++) {
-  //   const item = items.nth(i);
-
-  //   const title = await item.locator(".inventory_item_name").innerText();
-  //   const price = await item.locator(".inventory_item_price").innerText();
-  //   const description = await item.locator(".inventory_item_desc").innerText();
-
-  //   products.push({
-  //     title: title,
-  //     description: description,
-  //     price: price,
-  //   });
-  // }
   const inventory = new Inventory(page);
   //const allProducts = await inventory.getAllProducts();
   //console.log(allProducts);

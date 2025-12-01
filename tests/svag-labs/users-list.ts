@@ -7,3 +7,9 @@ export const users = {
   visual: "visual_user",
 };
 export const password = "secret_sauce";
+
+export const userForCheckout = {
+  firstName: "Olena",
+  lastName: "Lisova",
+  zipCode: "123456",
+};
