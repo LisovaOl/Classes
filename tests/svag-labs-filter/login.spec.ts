@@ -13,54 +13,6 @@ test("Log In as Standard User", async ({ page }) => {
   await logInAsStandard.login(users.standard, password);
 
   await expect(page.locator('[data-test="title"]')).toBeVisible();
-
-  // add "Sauce Labs Backpack" object
-  // const AddSauceLabsBackpackToCart = new Inventory(
-  //   page,
-  //   products[0].inventory_item_name,
-  //   products[0].price
-  // );
-
-  // add "Sauce Labs Backpack" to the Cart
-  // await AddSauceLabsBackpackToCart.addToCartByTitle(
-  //   products[0].inventory_item_name
-  // );
-  // await expect(
-  //   page.locator(`[data-test="remove-${products[0].inventory_item_name}"]`)
-  // ).toHaveText("Remove");
-
-  // // go to Cart
-  // await page.locator('[data-test="shopping-cart-link"]').click();
-
-  // // remove "Sauce Labs Backpack" from Cart
-  // await AddSauceLabsBackpackToCart.removeFromCartByTitle(
-  //   products[0].inventory_item_name
-  // );
-  // await expect(page.getByText(products[0].name)).toBeVisible({
-  //   visible: false,
-  // });
-
-  // // add "Sauce Labs Fleece Jacket" object
-  // const AddSauceLabsFleeceJacketToCart = new Inventory(
-  //   page,
-  //   products[1].inventory_item_name,
-  //   products[1].price
-  // );
-
-  // // add "Sauce Labs Fleece Jacket" to the Cart
-  // await AddSauceLabsFleeceJacketToCart.addToCartByTitle(
-  //   products[1].inventory_item_name
-  // );
-  // await expect(
-  //   page.locator(`[data-test="remove-${products[1].inventory_item_name}"]`)
-  // ).toHaveText("Remove");
-
-  // await page.locator('[data-test="shopping-cart-link"]').click();
-
-  // // remove "Sauce Labs Fleece Jacket" from Cart
-  // await AddSauceLabsFleeceJacketToCart.removeFromCartByTitle(
-  //   products[1].inventory_item_name
-  // );
 });
 test("Log In as Locked User", async ({ page }) => {
   await page.goto("https://www.saucedemo.com/");

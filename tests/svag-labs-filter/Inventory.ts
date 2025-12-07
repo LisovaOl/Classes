@@ -1,12 +1,42 @@
-import { Page } from "@playwright/test";
+import { Page, Locator } from "@playwright/test";
 //import { products } from "./product-list";
 
 export class Inventory {
   page: Page;
+  //inventoryItemName: Locator;
+  inventoryItem: Locator;
 
   constructor(page: Page) {
     this.page = page;
+    // locators
+    //this.inventoryItemName = page.locator(".inventory_item_name")
+    this.inventoryItem = page.locator(".inventory_item");
   }
+
+  addToCartByTitle = async (title: string) => {
+    const product = this.inventoryItem.filter({
+      has: this.page.locator(".inventory_item_name", { hasText: title }),
+    });
+
+    await product.getByRole("button", { name: /add to cart/i }).click();
+  };
+
+  removeFromCartByTitle = async (title: string) => {
+    const items = this.inventoryItem.filter({
+      has: this.page.locator(".inventory_item_name", { hasText: title }),
+    });
+
+    await items.getByRole("button", { name: /remove/i }).click();
+  };
+
+  getPriceByTitle = async (title: string): Promise<string> => {
+    const product = this.inventoryItem.filter({
+      has: this.page.locator(".inventory_item_name", { hasText: title }),
+    });
+
+    const price = await product.locator(".inventory_item_price").innerText();
+    return price;
+  };
 
   getAllProducts = async () => {
     const items = this.page.locator(".inventory_item");
@@ -32,30 +62,5 @@ export class Inventory {
       });
     }
     return products;
-  };
-
-  addToCartByTitle = async (title: string) => {
-    const product = this.page.locator(".inventory_item").filter({
-      has: this.page.locator(".inventory_item_name", { hasText: title }),
-    });
-
-    await product.getByRole("button", { name: /add to cart/i }).click();
-  };
-
-  removeFromCartByTitle = async (title: string) => {
-    const items = this.page.locator(".inventory_item").filter({
-      has: this.page.locator(".inventory_item_name", { hasText: title }),
-    });
-
-    await items.getByRole("button", { name: /remove/i }).click();
-  };
-
-  getPriceByTitle = async (title: string): Promise<string> => {
-    const product = this.page.locator(".inventory_item").filter({
-      has: this.page.locator(".inventory_item_name", { hasText: title }),
-    });
-
-    const price = await product.locator(".inventory_item_price").innerText();
-    return price;
   };
 }
